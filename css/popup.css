@@ -1,0 +1,49 @@
+body {
+  font-family: arial, helvetica, sans-serif;
+  font-size: 100%;
+}
+
+*:focus {
+  outline: none
+}
+
+a.city-btn {
+  display: inline-block;
+  background: #eee;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #333;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  float: left;
+  border-radius: 3px;
+}
+
+a.city-btn:hover {
+  background: #e5e5e5;
+}
+
+ul, li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; 
+}
+
+ul {
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 14pt;
+  padding-bottom: 10px;
+}
+
+.not-yet {
+  color: #aaa;
+  text-style: italic;
+}
+
+#content {
+  width: 400px;
+  min-height: 200px
+}
