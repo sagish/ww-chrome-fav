@@ -15,11 +15,20 @@ document.addEventListener('DOMContentLoaded', function() {
         (function(k){
           var $li = document.createElement('li');
           var $a = document.createElement('a');
+          var $remove = document.createElement('button');
+          $li.className = 'city-btn';
           $a.href = cities[k];
           $a.target = '_blank';
-          $a.className = 'city-btn';
           $a.innerHTML = k;
+          $remove.addEventListener('click', function(e){
+            // remove from list
+            e.preventDefault();
+            setFavorite(k, false, function(){
+              $ul.removeChild($li);
+            });
+          }, false);
           $li.appendChild($a);
+          $li.appendChild($remove);
           $ul.appendChild($li);
         })(names[i]);
       }
