@@ -24,18 +24,20 @@ function isFavorite(city, callback) {
 // update the local db with the new status of a city 
 function setFavorite(city, setAsFavorite, callback) {
   getCities(function(cities){
+    var save = {};
     if (!setAsFavorite && cities[city]) {
       delete cities[city];
     }
     else {
       cities[city] = getURL();
     }
-    chrome.storage.local.set({'cities': cities}, callback);
+    save[window.CONFIG.storageKey] = cities;
+    chrome.storage.local.set(save, callback);
   });
 }
 
 function getCities(callback) {
-  chrome.storage.local.get('cities', function(db) {
-    callback(db.cities || {});
+  chrome.storage.local.get(window.CONFIG.storageKey, function(db) {
+    callback(db[window.CONFIG.storageKey] || {});
   });
 }

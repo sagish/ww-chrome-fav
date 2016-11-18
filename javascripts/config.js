@@ -2,6 +2,7 @@
 window.CONFIG = {
   cityURLRegex: (/l\/(.+)/i),
   cityNameRegex: (/In(.+)\|/),
+  storageKey: 'cities',
   popup: {
     notYet: "You haven't marked any WeWork city as a favorite yet :("
   },
