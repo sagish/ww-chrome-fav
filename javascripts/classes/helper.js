@@ -4,11 +4,11 @@ class Helper {
   }
 
   static getCityFromSource() {
-    var matches = this.getURL().match(CONFIG.cityURLRegex);
-    var city = false;
+    var matches = this.getURL().match(CONFIG.cityURLRegex)
+    var city = false
     if (matches && matches[1] && document.title && document.title.match(CONFIG.cityNameRegex)) {
       city = document.title.match(/In(.+)\|/)[1].trim()
     }
-    return city;
+    return city
   }
 }

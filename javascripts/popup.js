@@ -1,10 +1,11 @@
+
 document.addEventListener('DOMContentLoaded', () => {
-  var $content = document.getElementById('yield');
+  let $content = document.getElementById('yield')
 
   function render() {
-    $content.childNodes.forEach((child) => child.remove());
+    $content.childNodes.forEach(child => child.remove())
 
-    City.findAll().then((cities) => {
+    City.findAll().then(cities => {
       if (cities.length === 0) {
         let $div = document.createElement('div');
         $div.className = 'not-yet';
@@ -25,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             city.remove().then(() => {
               render() // fresh is better
-              //$ul.removeChild($li)
             })
           }, false);
           $li.appendChild($a);
@@ -39,4 +39,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   render()
   
-});
+})

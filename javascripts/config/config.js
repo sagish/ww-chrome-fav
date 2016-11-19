@@ -17,3 +17,7 @@ const CONFIG = {
     }
   }
 }
+
+const HandleError = (err) => {
+  console.error(err)
+}

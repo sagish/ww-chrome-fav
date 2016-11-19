@@ -30,17 +30,17 @@ class DB {
 
   save() {
     console.log(this._className, 'save:', this['_' + MODELS[this._className]['key']])
-    return this._set(true);
+    return this._set(true)
   }
 
   remove() {
     console.log(this._className, 'remove:', this['_' + MODELS[this._className]['key']])
-    return this._set(false);
+    return this._set(false)
   }
 
   static find(key) {
     return new Promise ((resolve, reject) => {
-      this.findAll(true).then((data) => {
+      this.findAll(true).then(data => {
         if (data[key]) {
           let o = new this({
             [MODELS[this.name]['key']]: key, 
@@ -48,7 +48,7 @@ class DB {
           })
           return resolve(o)
         }
-        return resolve(false);
+        return resolve(false)
       })
     })
   }
@@ -58,7 +58,7 @@ class DB {
       var storageKey = MODELS[this.name]['storageKey']
 
       try {
-        chrome.storage.local.get(storageKey, ((db) => {
+        chrome.storage.local.get(storageKey, (db => {
           let data = (db[storageKey] || {});
           if (raw) return resolve(data); // return raw
           let results = []
@@ -69,11 +69,11 @@ class DB {
             }
             results.push(new this(o))
           }
-          resolve(results);
+          resolve(results)
         }));
       } 
       catch (e) {
-        reject(e);
+        reject(e)
       }
     })
   }

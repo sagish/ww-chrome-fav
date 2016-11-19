@@ -1,1 +1,1 @@
-# ww-chrome-fav
+# ww-chrome-fav ES6
