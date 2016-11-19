@@ -1,34 +1,42 @@
-document.addEventListener('DOMContentLoaded', (() => {
-  let $content = document.getElementById('content');
+document.addEventListener('DOMContentLoaded', () => {
+  var $content = document.getElementById('yield');
 
-  City.findAll().then((cities) => {
-    if (cities.length === 0) {
-      let $div = document.createElement('div');
-      $div.className = 'not-yet';
-      $div.innerHTML = CONFIG.popup.notYet;
-      $content.append($div);
-    }
-    else {
-      let $ul = document.createElement('ul');
-      for (let city of cities) {
-        let $li = document.createElement('li');
-        let $a = document.createElement('a');
-        let $remove = document.createElement('button');
-        $li.className = 'city-btn';
-        $a.href = city.url;
-        $a.target = '_blank';
-        $a.innerHTML = city.title;
-        $remove.addEventListener('click', ((e) => {
-          e.preventDefault();
-          city.remove().then(() => $ul.removeChild($li))
-        }), false);
+  function render() {
+    $content.childNodes.forEach((child) => child.remove());
 
-        $li.appendChild($a);
-        $li.appendChild($remove);
-        $ul.appendChild($li);
+    City.findAll().then((cities) => {
+      if (cities.length === 0) {
+        let $div = document.createElement('div');
+        $div.className = 'not-yet';
+        $div.innerHTML = CONFIG.popup.notYet;
+        $content.append($div);
       }
-      $content.append($ul);
-    }
-  })
+      else {
+        let $ul = document.createElement('ul');
+        for (let city of cities) {
+          let $li = document.createElement('li');
+          let $a = document.createElement('a');
+          let $remove = document.createElement('button');
+          $li.className = 'city-btn';
+          $a.href = city.url;
+          $a.target = '_blank';
+          $a.innerHTML = city.title;
+          $remove.addEventListener('click', (e) => {
+            e.preventDefault();
+            city.remove().then(() => {
+              render() // fresh is better
+              //$ul.removeChild($li)
+            })
+          }, false);
+          $li.appendChild($a);
+          $li.appendChild($remove);
+          $ul.appendChild($li);
+        }
+        $content.append($ul);
+      }
+    })
+  }
 
-}));
+  render()
+  
+});

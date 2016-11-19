@@ -1,4 +1,4 @@
-(function(){
+(() => {
   var favorite;
   var title;
   var url = Helper.getURL();
@@ -15,15 +15,15 @@
     });
   }
 
-  $button.addEventListener("click", (() => {
+  $button.addEventListener("click", () => {
     City.find(title).then((city) => {
       if (city) return city.remove().then(updateButton)
       new City({title, url}).save().then(updateButton)
     })
-  }), false);
+  }, false);
 
   // quirky observer - chrome.tabs in unvailable in content scripts nor window.onpopstate and other history events
-  setInterval(function(){
+  setInterval(() => {
     if (Helper.getCityFromSource()) {
       if (title !== Helper.getCityFromSource()) {
         // move from non-city to city page
@@ -36,6 +36,6 @@
       title = null;
       updateButton();
     }
-  }, 10);
+  }, 50);
 
 })();
