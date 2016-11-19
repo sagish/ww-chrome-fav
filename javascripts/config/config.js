@@ -1,5 +1,4 @@
-// define url conditions to indicate visiting a wework city location
-window.CONFIG = {
+const CONFIG = {
   cityURLRegex: (/l\/(.+)/i),
   cityNameRegex: (/In(.+)\|/),
   storageKey: 'cities',

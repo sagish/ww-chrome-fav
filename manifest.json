@@ -11,7 +11,14 @@
     {
       "matches": ["*://www.wework.com/*"],
       "css": ["css/button.css"],
-      "js": ["javascripts/config.js", "javascripts/common.js","javascripts/button.js"],
+      "js": [
+        "javascripts/config/config.js", 
+        "javascripts/config/models.js", 
+        "javascripts/classes/helper.js",
+        "javascripts/classes/db.js", 
+        "javascripts/classes/city.js",
+        "javascripts/button.js"
+      ],
       "run_at": "document_end"
     }
   ],
