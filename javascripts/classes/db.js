@@ -10,17 +10,21 @@ class DB {
   _set(save) {
     return new Promise((resolve, reject) => {
       try {
-        this.constructor.findAll(true).then((data) => {
-          if (save) {
-            data[this[MODELS[this._className]['key']]] = this[MODELS[this._className]['value']]
-          }
-          else {
-            delete data[this[MODELS[this._className]['key']]]  
-          }
-          chrome.storage.local.set({[MODELS[this._className]['storageKey']]: data}, () => {
-            resolve()
+        this
+          .constructor
+          .findAll(true)
+          .then(data => {
+            if (save) {
+              data[this[MODELS[this._className]['key']]] = this[MODELS[this._className]['value']]
+            }
+            else {
+              delete data[this[MODELS[this._className]['key']]]  
+            }
+            chrome.storage.local.set({[MODELS[this._className]['storageKey']]: data}, () => {
+              resolve()
+            })
           })
-        });
+          .catch(e => reject(e))
       }
       catch (e) {
         reject(e)
@@ -55,7 +59,7 @@ class DB {
 
   static findAll(raw=false) {
     return new Promise ((resolve, reject) => {
-      var storageKey = MODELS[this.name]['storageKey']
+      let storageKey = MODELS[this.name]['storageKey']
 
       try {
         chrome.storage.local.get(storageKey, (db => {
